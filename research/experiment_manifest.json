@@ -1,0 +1,11 @@
+{
+  "release": "Nexus Research Release 1.0",
+  "model_version": "Nexus v2.4 Uncrashable/Resilient",
+  "date": "2026-08-26",
+  "core": {"hypotheses": 5, "replicates_per_hypothesis": 100, "paired_experiments": 500, "simulation_runs": 1000, "population": 30, "companies": 6, "ticks": 360, "days": 15},
+  "additional": {"ablation_pairs": 80, "ablation_simulation_runs": 160, "sensitivity_runs": 40, "baseline_runs": 30, "pandemic_validation_pairs": 20, "pandemic_validation_runs": 40, "total_seeded_simulation_runs": 1250},
+  "seeds": {"core": "20260826-20260925 by hypothesis", "ablation": "20270826-20270845 by component", "sensitivity": "20280826-20280830 by parameter/level", "baseline": "20290826-20290855", "pandemic_validation": "20300826-20300845"},
+  "llm": "Mock/deterministic mode for causal experiments",
+  "reproduction": "reproduce.py PASS on 5 seeds",
+  "external_replication": "Not yet independently performed; replication request included."
+}
