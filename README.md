@@ -1,86 +1,116 @@
-# Nexus — AI Civilization Simulation
+# Nexus
 
-Nexus is an agent-based civilization simulator where citizens, companies, markets, politics, housing, technology, society and crises interact in a deterministic simulation.
+> **An autonomous-agent civilization laboratory** — simulate minds, markets, institutions, crises, and societies; then run reproducible experiments on them.
 
-## Highlights
+[![Research Status](https://img.shields.io/badge/research-v2.5%20hardened-blue)](RESEARCH_STATUS_V2.5.md) [![Reproducibility](https://img.shields.io/badge/reproducibility-seeded-green)](reproduce.py) [![License](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
-- Citizen cognition with provider-agnostic LLM support
-- Free-first AI: local Ollama/Qwen3, OpenRouter free routing, Anthropic, then safe mock fallback
-- Endogenous economy, businesses, employment, housing, credit and equities
-- Politics, elections, social networks, generations and environmental dynamics
-- Experiment mode with deterministic seeds and fingerprints
-- SQLite checkpoints and restore
-- Flask API + browser dashboards
-- Vercel frontend and Render backend deployment configs
+## Why Nexus?
 
-## Quick start
+Nexus is a research-oriented agent-based simulation in which citizens have persistent internal state, needs, beliefs, memory, goals and plans, while the surrounding civilization contains firms, housing, banking, financial markets, politics, information, cybersecurity and technological change.
+
+The core design principle is **LLM proposals + deterministic world validation**: an LLM can suggest a decision, but it cannot directly mutate the simulated world.
+
+## Research questions
+
+Nexus is built to investigate questions such as:
+
+- How do autonomous agents react to monetary tightening?
+- How do financial shocks propagate through households and firms?
+- What happens when automation changes productivity and labor demand?
+- How do information, social learning and institutions alter collective outcomes?
+- Which mechanisms generate inequality, housing cycles and systemic risk?
+
+## Current research release
+
+**v2.5 Research Hardened** is the current model freeze for scientific evaluation. Earlier research results are explicitly superseded where the underlying mechanisms changed.
+
+The repository includes:
+
+- 🧠 Autonomous-agent cognition and persistent memory
+- 💵 USD-denominated economic system
+- 🏦 Banking, credit, equities and financial contagion
+- 🏠 Housing and employment
+- 🗳️ Politics and institutions
+- 🛡️ Cybersecurity events
+- 🌐 Information and social dynamics
+- 🔬 Experiment runner, seeds, ablations and sensitivity analysis
+- 📈 Publication-quality figures and raw experiment outputs
+- ♻️ Checkpointing, supervisor and recovery architecture
+- ⚡ Performance/scaling benchmarks
+- 🤖 Free-first local LLM setup with Ollama/Qwen
+
+## Repository map
+
+```text
+src/                 Core simulator, API and interactive city
+├── civ_lab/         Agents, cognition, economy, markets, society, research
+├── city.html        Living-city visualization
+├── dashboard.html   Research/observability dashboard
+├── api.py           Flask API
+└── test_suite.py    Regression tests
+
+Research artifacts
+├── PAPER.md
+├── Nexus_Research_Paper_v1.0.pdf
+├── experiment_manifest.json
+├── hypothesis_summary.json
+├── raw_H*.json
+├── ablation_*.json
+├── sensitivity_*.json
+├── historical_us_reference.json
+└── *.png
+
+Research documentation
+├── MODEL_CARD.md
+├── VALIDATION.md
+├── RESEARCH_STATUS_V2.5.md
+├── RESEARCH_RELEASE.md
+├── RESEARCH_PLATFORM.md
+├── AGENT_MIND_SPEC.md
+├── ARCHITECTURE.md
+└── SCALING_ARCHITECTURE.md
+```
+
+## Run locally
 
 ```bash
+cd src
 python -m venv .venv
 # Windows: .venv\\Scripts\\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-python run_simulation.py
-```
-
-Open `city.html` or serve the project with a static server. For the API:
-
-```bash
+python critical_test.py
 python api.py
 ```
 
-## Free AI
+Open `city.html` for the interactive civilization.
 
-The recommended zero-cost local setup is Ollama with Qwen3. See [FREE_LLM_SETUP.md](FREE_LLM_SETUP.md).
+### Free local AI
 
-Nexus never lets an LLM directly mutate the world. The model proposes an action; the deterministic simulation validates and applies it.
+Install Ollama and a compatible local model (Qwen recommended). See [`src/FREE_LLM_SETUP.md`](src/FREE_LLM_SETUP.md).
 
-## Deployment
+## Reproduce the research
 
-- Frontend: Vercel using `vercel.json`
-- Simulation/API: Render using `render.yaml`
-
-The Render service intentionally uses one worker because the live simulation state is held in process memory. Threads provide concurrent HTTP handling without splitting the world into disconnected worker processes.
-
-## Testing
+The research artifacts are designed around explicit seeds and manifests.
 
 ```bash
-python critical_test.py
-python -m compileall -q .
+python reproduce.py
 ```
 
-GitHub Actions runs both checks automatically.
+See [`REPLICATION_REQUEST.md`](REPLICATION_REQUEST.md) for an independent-reproduction protocol.
 
-## Project layout
+## Scientific status
 
-```text
-.
-├── api.py
-├── run_simulation.py
-├── critical_test.py
-├── city.html
-├── dashboard.html
-├── civ_lab/
-│   ├── actions.py
-│   ├── advanced.py
-│   ├── city.py
-│   ├── cognition.py
-│   ├── economy.py
-│   ├── events.py
-│   ├── experiment.py
-│   ├── llm.py
-│   ├── memory.py
-│   ├── models.py
-│   ├── persistence.py
-│   ├── politics.py
-│   ├── seed.py
-│   ├── simulation.py
-│   └── society.py
-├── .github/workflows/test.yml
-├── render.yaml
-└── vercel.json
-```
+Nexus is a **research-ready synthetic modeling platform**, not a validated forecasting model and not a claim of artificial consciousness or AGI. Historical comparisons are directional unless explicitly calibrated and validated. Failed hypotheses and model limitations are retained rather than hidden.
 
-## Status
+## Citation
 
-Nexus v1.0 is feature-complete for the current architecture. The next improvements should be product polish, richer visualization, real-world model evaluation, and production scaling rather than adding disconnected mechanics.
+See [`src/CITATION.cff`](src/CITATION.cff).
+
+## Contributing
+
+Issues and independent replications are welcome. If you reproduce a result, please report the commit, environment, seeds, and exact command used.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
