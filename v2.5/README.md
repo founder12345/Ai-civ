@@ -1,6 +1,6 @@
 # Nexus v2.5 — Research Hardened
 
-This directory contains the v2.5 research-hardened simulator release. It is intentionally separated from the legacy root implementation so the public repository preserves a clean history.
+This directory contains the current research-hardened simulator release. It is intentionally separated from legacy material so the public repository preserves model lineage.
 
 ## Core modules
 
