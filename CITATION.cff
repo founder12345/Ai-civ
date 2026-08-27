@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Nexus: Autonomous Civilization Research Platform"
+type: software
+message: "If you use Nexus in research, please cite this repository."
+authors:
+  - family-names: "Mudès"
+    given-names: "Elyas"
+repository-code: "https://github.com/founder12345/Ai-civ"
+abstract: "A reproducible agent-based synthetic civilization laboratory for studying interactions among autonomous agents, markets, institutions, information and crises."
+keywords:
+  - agent-based modeling
+  - artificial intelligence
+  - complex adaptive systems
+  - computational social science
+  - economic simulation
+  - multi-agent systems
+license: "MIT"
