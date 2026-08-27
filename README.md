@@ -1,116 +1,146 @@
-# Nexus
+# NEXUS — Autonomous Civilization Research Platform
 
-> **An autonomous-agent civilization laboratory** — simulate minds, markets, institutions, crises, and societies; then run reproducible experiments on them.
+> **A reproducible agent-based simulation for studying how autonomous citizens, markets, institutions, information and crises interact.**
 
-[![Research Status](https://img.shields.io/badge/research-v2.5%20hardened-blue)](RESEARCH_STATUS_V2.5.md) [![Reproducibility](https://img.shields.io/badge/reproducibility-seeded-green)](reproduce.py) [![License](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+[![Research](https://img.shields.io/badge/status-research--release-blue)](#research-status) [![Reproducible](https://img.shields.io/badge/reproducibility-seeded%20experiments-success)](#reproducibility) [![Python](https://img.shields.io/badge/python-3.11%2B-informational)](#quick-start)
 
-## Why Nexus?
+## 🌍 What is Nexus?
 
-Nexus is a research-oriented agent-based simulation in which citizens have persistent internal state, needs, beliefs, memory, goals and plans, while the surrounding civilization contains firms, housing, banking, financial markets, politics, information, cybersecurity and technological change.
+Nexus is a synthetic civilization laboratory. Citizens have needs, goals, memory, beliefs and bounded perception; they move through a living city, work, consume, save, invest and interact. Companies, banks, markets, government, information networks, technology and cybersecurity co-evolve with the population.
 
-The core design principle is **LLM proposals + deterministic world validation**: an LLM can suggest a decision, but it cannot directly mutate the simulated world.
+The goal is **not** to claim that the simulated agents are conscious or that Nexus predicts the real economy. The goal is to create a controlled environment where hypotheses about complex adaptive systems can be made explicit, tested repeatedly and reproduced from seeds.
 
-## Research questions
+### Core systems
 
-Nexus is built to investigate questions such as:
+- 🧠 Autonomous citizen cognition and persistent memory
+- 🚶 Need-driven, path-based citizen movement
+- 💵 USD-denominated household, business and banking economics
+- 📈 Financial markets and local business investment
+- 🏦 Credit, banking and crisis propagation
+- 🏛️ Politics, institutions and collective behavior
+- 🗣️ Social information and cultural evolution
+- 🤖 Provider-agnostic LLM cognition with deterministic fallback
+- 🛡️ Cybersecurity events and bounded system response
+- 🔬 Experiment runner, sensitivity analysis and ablations
+- ♻️ Deterministic seeds, fingerprints and reproduction tooling
+- 🧯 Checkpoints, supervision and graceful recovery
+- ⚡ Worker-based simulation and performance telemetry
+- 🎮 Living-city visualization with smooth movement and ambient systems
 
-- How do autonomous agents react to monetary tightening?
-- How do financial shocks propagate through households and firms?
-- What happens when automation changes productivity and labor demand?
-- How do information, social learning and institutions alter collective outcomes?
-- Which mechanisms generate inequality, housing cycles and systemic risk?
+## 🔬 Research status
 
-## Current research release
+**Research Release 1.0 / model v2.5.** The project is research-ready as a synthetic modeling platform, but it is **not yet a validated real-world forecasting model**. Historical comparison, calibration and independent replication are explicitly tracked as research work rather than hidden behind a marketing claim.
 
-**v2.5 Research Hardened** is the current model freeze for scientific evaluation. Earlier research results are explicitly superseded where the underlying mechanisms changed.
+See [`v2.5/docs/RESEARCH_STATUS_V2.5.md`](v2.5/docs/RESEARCH_STATUS_V2.5.md), [`v2.5/docs/MODEL_CARD.md`](v2.5/docs/MODEL_CARD.md) and [`v2.5/docs/VALIDATION.md`](v2.5/docs/VALIDATION.md).
 
-The repository includes:
+## 🧪 Reproducible research
 
-- 🧠 Autonomous-agent cognition and persistent memory
-- 💵 USD-denominated economic system
-- 🏦 Banking, credit, equities and financial contagion
-- 🏠 Housing and employment
-- 🗳️ Politics and institutions
-- 🛡️ Cybersecurity events
-- 🌐 Information and social dynamics
-- 🔬 Experiment runner, seeds, ablations and sensitivity analysis
-- 📈 Publication-quality figures and raw experiment outputs
-- ♻️ Checkpointing, supervisor and recovery architecture
-- ⚡ Performance/scaling benchmarks
-- 🤖 Free-first local LLM setup with Ollama/Qwen
-
-## Repository map
+The repository includes experiment manifests, seeds, results, analysis code and a clean-room reproduction script. Research artifacts are separated from the interactive application so experiments can be rerun without relying on the UI or an external LLM provider.
 
 ```text
-src/                 Core simulator, API and interactive city
-├── civ_lab/         Agents, cognition, economy, markets, society, research
-├── city.html        Living-city visualization
-├── dashboard.html   Research/observability dashboard
-├── api.py           Flask API
-└── test_suite.py    Regression tests
-
-Research artifacts
+research/
 ├── PAPER.md
-├── Nexus_Research_Paper_v1.0.pdf
-├── experiment_manifest.json
-├── hypothesis_summary.json
-├── raw_H*.json
-├── ablation_*.json
-├── sensitivity_*.json
-├── historical_us_reference.json
-└── *.png
-
-Research documentation
-├── MODEL_CARD.md
-├── VALIDATION.md
-├── RESEARCH_STATUS_V2.5.md
+├── DATA_SOURCES.md
 ├── RESEARCH_RELEASE.md
-├── RESEARCH_PLATFORM.md
-├── AGENT_MIND_SPEC.md
-├── ARCHITECTURE.md
-└── SCALING_ARCHITECTURE.md
+├── REPLICATION_REQUEST.md
+├── experiment_manifest.json
+├── reproduce.py
+└── results_table.csv
 ```
 
-## Run locally
+> **Important:** results produced by an earlier model version are historical artifacts. Any model change requires a fresh research campaign.
+
+## 🏗️ Architecture
+
+```text
+                    ┌──────────────────────────┐
+                    │       NEXUS WORLD         │
+                    └────────────┬─────────────┘
+                                 │
+          ┌──────────────────────┼──────────────────────┐
+          ▼                      ▼                      ▼
+      Citizens               Economy              Institutions
+          │                      │                      │
+      cognition              markets                politics
+      memory                 banking               culture
+      goals                  housing                information
+          └──────────────────────┼──────────────────────┘
+                                 ▼
+                         World consequences
+                                 │
+                         memory + learning
+                                 ↺
+```
+
+The v2.5 hardened engine adds a supervisor, checkpoints and bounded recovery around the deterministic simulation core. See [`v2.5/docs/FAILURE_MODES.md`](v2.5/docs/FAILURE_MODES.md) and [`v2.5/docs/SCALING_ARCHITECTURE.md`](v2.5/docs/SCALING_ARCHITECTURE.md).
+
+## 🤖 Free AI setup
+
+The recommended zero-cost local configuration is **Ollama + Qwen3**. Nexus treats an LLM as a proposal generator: the deterministic simulation validates and applies actions, so an LLM failure cannot directly corrupt the world state.
+
+See [`FREE_LLM_SETUP.md`](FREE_LLM_SETUP.md).
+
+## 🚀 Quick start
 
 ```bash
-cd src
 python -m venv .venv
-# Windows: .venv\\Scripts\\activate
+# Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-python critical_test.py
+python run_simulation.py
+```
+
+API:
+
+```bash
 python api.py
 ```
 
-Open `city.html` for the interactive civilization.
+Then open `city.html` for the interactive city or `dashboard.html` for the research dashboard.
 
-### Free local AI
-
-Install Ollama and a compatible local model (Qwen recommended). See [`src/FREE_LLM_SETUP.md`](src/FREE_LLM_SETUP.md).
-
-## Reproduce the research
-
-The research artifacts are designed around explicit seeds and manifests.
+## 🧪 Tests
 
 ```bash
-python reproduce.py
+python critical_test.py
+python -m compileall -q .
 ```
 
-See [`REPLICATION_REQUEST.md`](REPLICATION_REQUEST.md) for an independent-reproduction protocol.
+GitHub Actions runs the core checks automatically.
 
-## Scientific status
+## ☁️ Deployment
 
-Nexus is a **research-ready synthetic modeling platform**, not a validated forecasting model and not a claim of artificial consciousness or AGI. Historical comparisons are directional unless explicitly calibrated and validated. Failed hypotheses and model limitations are retained rather than hidden.
+- Frontend configuration: [`vercel.json`](vercel.json)
+- Backend configuration: [`render.yaml`](render.yaml)
+- Lovable can use the repository as the source for the browser application while the simulation/API runs as a separate service.
 
-## Citation
+## 📚 Research documents
 
-See [`src/CITATION.cff`](src/CITATION.cff).
+| Document | Purpose |
+|---|---|
+| [`research/PAPER.md`](research/PAPER.md) | Research narrative and results |
+| [`research/RESEARCH_RELEASE.md`](research/RESEARCH_RELEASE.md) | Release-level research record |
+| [`research/DATA_SOURCES.md`](research/DATA_SOURCES.md) | External reference datasets |
+| [`research/REPLICATION_REQUEST.md`](research/REPLICATION_REQUEST.md) | Independent replication request |
+| [`v2.5/docs/MODEL_CARD.md`](v2.5/docs/MODEL_CARD.md) | Model scope and limitations |
+| [`v2.5/docs/VALIDATION.md`](v2.5/docs/VALIDATION.md) | Validation protocol |
+| [`v2.5/docs/FAILURE_MODES.md`](v2.5/docs/FAILURE_MODES.md) | Failure and recovery design |
+| [`v2.5/docs/SCALING_ARCHITECTURE.md`](v2.5/docs/SCALING_ARCHITECTURE.md) | Scaling strategy |
 
-## Contributing
+## ⚠️ Scientific boundaries
 
-Issues and independent replications are welcome. If you reproduce a result, please report the commit, environment, seeds, and exact command used.
+Nexus is a **simulation**, not a claim of artificial general intelligence or machine consciousness. Its cognition layer provides persistent state, goals, memory, planning and LLM-assisted decisions; these are computational constructs and should not be interpreted as evidence of subjective experience.
+
+Likewise, a successful simulation experiment does not establish that the same causal effect exists in the real world. Real-world claims require calibration, external validation and independent replication.
+
+## 📌 Roadmap
+
+- [ ] Complete post-v2.5 calibration campaign
+- [ ] Expand long-horizon / large-population experiments
+- [ ] Publish full raw experiment bundles and figures
+- [ ] Independent external replication
+- [ ] Benchmark alternative agent architectures
+- [ ] Add stronger historical calibration where data support it
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+See repository licensing and attribution files before redistributing Nexus or its research artifacts.
